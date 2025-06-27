@@ -1052,6 +1052,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5851390010931989700, guid: 89b966bde9f9582408b72e22bae6ccc5,
+        type: 3}
+      propertyPath: tomatoPrefabs
+      value: 
+      objectReference: {fileID: 2934677381289656216, guid: d32f9814e47a96149b48453768f10f3d,
+        type: 3}
+    - target: {fileID: 5851390010931989700, guid: 89b966bde9f9582408b72e22bae6ccc5,
+        type: 3}
+      propertyPath: kitchenObjectSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 80d4b1cfa118b5e44a124070974d716f,
+        type: 2}
     - target: {fileID: 8392811621835182170, guid: 89b966bde9f9582408b72e22bae6ccc5,
         type: 3}
       propertyPath: m_Name
