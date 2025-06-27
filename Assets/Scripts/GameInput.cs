@@ -8,6 +8,8 @@ using UnityEngine;
 public class GameInput : MonoBehaviour
 {
     public event EventHandler OnInteractAction; // 상호작용 이벤트 핸들러
+    public event EventHandler OnInteractAlternateAction; // 슬라이스 상호작용 이벤트 핸들러
+
     private PlayerInputActions playerInputActions; // InputSystem
 
     private void Awake()
@@ -16,6 +18,12 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Enable();
 
         playerInputActions.Player.Interact.performed += Interact_performed; // 상호작용 키 입력 시 실행할 이벤트
+        playerInputActions.Player.InteractAlternate.performed += InteractAlternate_performed;
+    }
+
+    private void InteractAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnInteractAlternateAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

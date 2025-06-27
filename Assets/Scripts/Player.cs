@@ -9,7 +9,6 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     
-    // Class 안에 Class 구조도 올바른지 모르겠다?..
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
         public BaseCounter selectedCounter;
@@ -38,6 +37,15 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     private void Start()
     {
         gameInput.OnInteractAction += GameInput_OnInteractAction; // 이벤트 등록
+        gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+    }
+
+    private void GameInput_OnInteractAlternateAction(object sender, EventArgs e)
+    {
+        if(selectedCounter != null)
+        {
+            selectedCounter.InteractAlternate(this);
+        }
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
@@ -113,7 +121,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             // 대각 움직임 조정
             // x 방향 움직임은 가능한지 체크
             Vector3 moveDirX = new Vector3(moveDir.x, 0, 0).normalized;
-            canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHieght, playerRadius, moveDirX, moveDistance);
+            canMove = moveDir.x != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHieght, playerRadius, moveDirX, moveDistance);
 
             if (canMove) // x 방향으로만 개선
             {
@@ -122,7 +130,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             else // x 방향에도 충돌 객체가 있으므로 z방향을 확인
             {
                 Vector3 moveDirZ = new Vector3(0, 0, moveDir.z).normalized;
-                canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHieght, playerRadius, moveDirZ, moveDistance);
+                canMove = moveDir.z != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHieght, playerRadius, moveDirZ, moveDistance);
                 if (canMove) moveDir = moveDirZ; // z방향으로 개선
             }
         }
