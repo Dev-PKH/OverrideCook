@@ -14,6 +14,7 @@ public class KitchenObject : MonoBehaviour
         return kitchenObjectso;
     }
 
+    // 재료의 부모와 위치를 옮김
     public void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent)
     {
         // 계산대에 이미 오브젝트가 위치한 경우
