@@ -14,58 +14,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1750407289
+  lastShownTimestamp: 1751010239
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1750407289
+  checkedLastUpdateTimestamp: 1751010239
   lastQOTDResponse:
-    questionId: 192
-    questionText: 'When would this code cause an error?
+    questionId: 195
+    questionText: 'Does this code have an error?
 
-      <p>Building closest
-      = null;</p>
+      <p>int myNewX = 10;</p>
 
-      <p>for (int i = 0; i &lt; instanceList.Count; i++) {</p>
-
-      <p>&nbsp;
-      &nbsp; if (Vector3.Distance(position, instanceList[i].GetPosition()) &lt; Vector3.Distance(position,
-      closest.GetPosition())) {</p>
-
-      <p>&nbsp; &nbsp; &nbsp; &nbsp; closest
-      = instanceList[i];</p>
-
-      <p>&nbsp; &nbsp; }</p>
-
-      <p>}</p>
-
-      <p>return
-      closest;</p>'
-    answerA: When instanceList is empty
-    answerB: When instanceList has at least one element
-    answerC: When instanceList has exactly two elements
+      <p>transform.position.x
+      = myNewX;</p>'
+    answerA: Yes
+    answerB: No
+    answerC: Only if GameObject does not have a Transform component
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1750407289
+  lastQotdTimestamp: 1751010239
   lastDynamicHeaderResponse:
-    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/ultimateOverview70_6FreeUpdate.png
-    topText: Learn how to use 70 Tools and Features! (Unity 6 Updated)
-    topLink: ultimateunityoverview
+    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleJun25MegaMix.png
+    topText: AWESOME NEW Unity Bundle with Tools and Assets 97% OFF!
+    topLink: humblebundle
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1750407289
+  lastDynamicHeaderTimestamp: 1751010239
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1750407289
+  websiteLatestMessageTimestamp: 1751010239
   websiteLatestVideos:
     videos:
-    - youTubeId: KrjXYXGdnj8
-      title: How to BREAK your Desktop!
-    - youTubeId: AD5HtjUun5g
-      title: Which Unity Version should you use?
-    - youTubeId: 2UP_g58SDKM
-      title: TOP 10 FREE NEW Assets JUNE 2025!
-    - youTubeId: jPXFBmfInRQ
-      title: YOU can CHANGE the FUTURE of Unity!
-  websiteLatestVideosTimestamp: 1750407289
+    - youTubeId: du6S-egCx1s
+      title: Getting Started with Unity AI (Assistant, Generators, Developer Data
+        Framework)
+    - youTubeId: tFU4cO_m5Xo
+      title: TOP 10 NEW Games, Made with Unity! (MAY 2025)
+    - youTubeId: iN3Q0RBiWk8
+      title: What do the BEST Programmers do differently?
+    - youTubeId: Nv-pG1v_TaM
+      title: TOP 10 NEW Systems and Tools JUNE 2025! | Unity Asset Store
+  websiteLatestVideosTimestamp: 1751010239

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IKitchenObjectParent
 {
     public static Player Instance { get; private set; }
 
@@ -12,17 +12,18 @@ public class Player : MonoBehaviour
     // Class 안에 Class 구조도 올바른지 모르겠다?..
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
-        public ClearCounter selectedCounter;
+        public BaseCounter selectedCounter;
     }
 
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask countersLayerMask;
+    [SerializeField] private Transform kitchenObjectHoldPoint;
 
     private bool isWalking;
     private Vector3 lastInteractDir;
-    private ClearCounter selectedCounter;
-
+    private BaseCounter selectedCounter;
+    private KitchenObject kitchenObject;
 
     private void Awake()
     {
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour
     {
         if(selectedCounter != null)
         {
-            selectedCounter.Interact(); // 선택된 계산대 상호작용 실행
+            selectedCounter.Interact(this); // 선택된 계산대 상호작용 실행
         }
     }
 
@@ -74,11 +75,11 @@ public class Player : MonoBehaviour
         // 마지막 움직임 방향으로 지정 거리만큼 특정 레이어 객체를 감지
         if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter)) //해당 객체의 ClearCounter 컴포넌트 여부 확인. // 여기가 GetCom이라 좀 거슬림
+            if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter)) //해당 객체의 ClearCounter 컴포넌트 여부 확인. // 여기가 GetCom이라 좀 거슬림
             {
-                if(clearCounter != selectedCounter) // 서로 다른 객체였다면 교체
+                if(baseCounter != selectedCounter) // 서로 다른 객체였다면 교체
                 {
-                    SetSelectedCounter(clearCounter);
+                    SetSelectedCounter(baseCounter);
                 }
             }
             else
@@ -134,7 +135,7 @@ public class Player : MonoBehaviour
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotataionSpeed);
     }
 
-    private void SetSelectedCounter(ClearCounter selectedCounter)
+    private void SetSelectedCounter(BaseCounter selectedCounter)
     {
         this.selectedCounter = selectedCounter;
 
@@ -142,5 +143,32 @@ public class Player : MonoBehaviour
         {
             selectedCounter = selectedCounter
         });
+    }
+
+    public Transform GetKitchenObjectFollowTransform()
+    {
+        return kitchenObjectHoldPoint;
+    }
+
+    // 부엌 오브젝트 갱신
+    public void SetKitchenObject(KitchenObject kitchenObject)
+    {
+        this.kitchenObject = kitchenObject;
+    }
+
+    public KitchenObject GetKitchenObject()
+    {
+        return kitchenObject;
+    }
+
+    // 부엌 오브젝트 초기화
+    public void ClearKitchenObject()
+    {
+        kitchenObject = null;
+    }
+
+    public bool HasKitchenObject()
+    {
+        return kitchenObject != null;
     }
 }

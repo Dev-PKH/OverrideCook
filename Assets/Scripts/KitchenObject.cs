@@ -7,35 +7,35 @@ public class KitchenObject : MonoBehaviour
 {
     [SerializeField] private KitchenObjectSO kitchenObjectso;
 
-    private ClearCounter clearCounter; // 현재 위치한 계산대
+    private IKitchenObjectParent kitchenObjectParent; // 현재 위치한 계산대
 
     public KitchenObjectSO GetKitchenObjectSO()
     {
         return kitchenObjectso;
     }
 
-    public void SetClearCounter(ClearCounter clearCounter)
+    public void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent)
     {
         // 계산대에 이미 오브젝트가 위치한 경우
-        if(this.clearCounter != null)
+        if(this.kitchenObjectParent != null)
         {
-            this.clearCounter.ClearKitchenObject(); // 오브젝트를 비운다.
+            this.kitchenObjectParent.ClearKitchenObject(); // 오브젝트를 비운다.
         }
-        this.clearCounter = clearCounter; // 현재 계산대로 수정
+        this.kitchenObjectParent = kitchenObjectParent; // 현재 계산대로 수정
 
-        if(clearCounter.HasKitchenObject()) // 오브젝트를 지웠는데 남아있는 경우
+        if(kitchenObjectParent.HasKitchenObject()) // 오브젝트를 지웠는데 남아있는 경우
         {
-            Debug.LogError("계산대에 이미 물건이 있다.");
+            Debug.LogError("이미 물건이 있다.");
         }
 
-        clearCounter.SetKitchenObject(this); // 현재 계산대에 이 오브젝트를 추가
+        kitchenObjectParent.SetKitchenObject(this); // 현재 계산대에 이 오브젝트를 추가
 
-        transform.parent = clearCounter.GetKitchenObjectFollowTransform(); // 부모 변경
+        transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform(); // 부모 변경
         transform.localPosition = Vector3.zero; // 위치 이동
     }
 
-    public ClearCounter GetClearCounter()
+    public IKitchenObjectParent GetKitchenObjectParent()
     {
-        return clearCounter;
+        return kitchenObjectParent;
     }
 }
