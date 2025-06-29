@@ -5,13 +5,13 @@ using UnityEngine;
 // 부엌 오브젝트 스크립트
 public class KitchenObject : MonoBehaviour
 {
-    [SerializeField] private KitchenObjectSO kitchenObjectso;
+    [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
     private IKitchenObjectParent kitchenObjectParent; // 현재 위치한 계산대
 
     public KitchenObjectSO GetKitchenObjectSO()
     {
-        return kitchenObjectso;
+        return kitchenObjectSO;
     }
 
     // 재료의 부모와 위치를 옮김
