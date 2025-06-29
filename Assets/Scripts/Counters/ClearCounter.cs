@@ -25,7 +25,23 @@ public class ClearCounter : BaseCounter
         {
             if(player.HasKitchenObject()) // 플레이어와 계산대 모두 재료가 있을 때
             {
-
+                if(player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) // 현재 들고 있는게 그릇이라면
+                {
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())) // 플레이팅 재료라면 삭제
+                    {
+                        GetKitchenObject().DestroySelf();
+                    }
+                }
+                else // 플레이어가 그릇이 아닌 다른걸 들고 있다면
+                {// 위에서 out PlateKitchenObject plateKitchenObject로 선언했기 때문에 밑에는 그대로 해당 변수를 가져다 쓸 수 있음
+                    if (GetKitchenObject().TryGetPlate(out plateKitchenObject)) // 테이블에 있는게 그릇일 때
+                    {
+                        if(plateKitchenObject.TryAddIngredient(player.GetKitchenObject().GetKitchenObjectSO())) // 플레이어가 플레이팅 재료를 들고 있다면
+                        {
+                            player.GetKitchenObject().DestroySelf(); // 플레이어 재료 삭제
+                        }
+                    }
+                }
             }
             else // 플레이어가 아무것도 없을 때
             {
