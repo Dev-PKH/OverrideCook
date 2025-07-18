@@ -14,46 +14,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1751216156
+  lastShownTimestamp: 1752813014
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1751216156
+  checkedLastUpdateTimestamp: 1752813014
   lastQOTDResponse:
-    questionId: 195
-    questionText: 'Does this code have an error?
+    questionId: 202
+    questionText: 'What is the Color on the SpriteRenderer after running this code?
 
-      <p>int myNewX = 10;</p>
+      <p>Color
+      myColor = Color.red;</p>
 
-      <p>transform.position.x
-      = myNewX;</p>'
-    answerA: Yes
-    answerB: No
-    answerC: Only if GameObject does not have a Transform component
+      <p>spriteRenderer.color = myColor;</p>
+
+      <p>myColor
+      = Color.blue;</p>'
+    answerA: Red
+    answerB: Blue
+    answerC: Don't Know
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1751216156
+  lastQotdTimestamp: 1752813014
   lastDynamicHeaderResponse:
-    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/cSharpCourseNewBeginnerProjects.png
-    topText: I just updated my C# course with 10 FUN Beginner Projects! Learn by
-      DOING!
-    topLink: csharpcourse
+    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/summer2025CodeMonkeyBundle.png
+    topText: All my Courses (and Games) in one Bundle! DEEP DISCOUNT ONLY THIS SUMMER!
+    topLink: summer2025bundle
     bottomText: AWESOME NEW Unity Bundle with Tools and Assets 97% OFF!
     bottomLink: humblebundle
-  lastDynamicHeaderTimestamp: 1751216156
+  lastDynamicHeaderTimestamp: 1752813014
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1751216156
+  websiteLatestMessageTimestamp: 1752813014
   websiteLatestVideos:
     videos:
-    - youTubeId: du6S-egCx1s
-      title: Getting Started with Unity AI (Assistant, Generators, Developer Data
-        Framework)
-    - youTubeId: tFU4cO_m5Xo
-      title: TOP 10 NEW Games, Made with Unity! (MAY 2025)
-    - youTubeId: iN3Q0RBiWk8
-      title: What do the BEST Programmers do differently?
-    - youTubeId: Nv-pG1v_TaM
-      title: TOP 10 NEW Systems and Tools JUNE 2025! | Unity Asset Store
-  websiteLatestVideosTimestamp: 1751216156
+    - youTubeId: PbFb7PFdT4A
+      title: Get 98% OFF on the Unity Summer Sale! (Awesome TOOLS and Assets!)
+    - youTubeId: 4kg2N-t2tWI
+      title: How REAL Developers Build Complex Games!
+    - youTubeId: OOVrtfWLdvE
+      title: TOP 10 FREE NEW Assets JULY 2025!
+    - youTubeId: ALogEuL6QdA
+      title: The BEST Design Patterns for Game Dev! (Save Time and make BETTER Games!)
+  websiteLatestVideosTimestamp: 1752813014
