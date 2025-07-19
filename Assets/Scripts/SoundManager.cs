@@ -48,7 +48,7 @@ public class SoundManager : MonoBehaviour
 
     private void DeliveryManager_OnRecipeFailed(object sender, System.EventArgs e)
     {
-        DeliveryCounter deliveryCounter = DeliveryCounter.Instance; // Âü°í·Î ³ª´Â ½Ì±ÛÅæ Á¶°Ç¸¸Á·½ÃÅ³·Á°í Instance¸¦ ´Ù¸£°Ô Á¦¾à°Ë
+        DeliveryCounter deliveryCounter = DeliveryCounter.Instance; // ì°¸ê³ ë¡œ ë‚˜ëŠ” ì‹±ê¸€í†¤ ì¡°ê±´ë§Œì¡±ì‹œí‚¬ë ¤ê³  Instanceë¥¼ ë‹¤ë¥´ê²Œ ì œì•½ê²€
         PlaySound(audioClipRefsSO.deliveryFail, deliveryCounter.transform.position);
     }
 
