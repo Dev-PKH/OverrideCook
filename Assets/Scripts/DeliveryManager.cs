@@ -18,6 +18,7 @@ public class DeliveryManager : MonoBehaviour
     private float spawnRecipeTimer;
     private float spawnRecipeTimerMax = 4f;
     private int waitingRecipesMax = 4;
+    private int successfulRecipesAmount;
 
     private void Awake()
     {
@@ -50,17 +51,17 @@ public class DeliveryManager : MonoBehaviour
         {
             RecipeSO waitingRecipeSO = waitingRecipeSOList[i];
 
-            // ·¹½ÃÇÇ¿¡ Àç·á °³¼ö°¡ °°ÀºÁö 1Â÷ Ã¼Å©
+            // ë ˆì‹œí”¼ì— ì¬ë£Œ ê°œìˆ˜ê°€ ê°™ì€ì§€ 1ì°¨ ì²´í¬
             if (waitingRecipeSO.kitchenObjectSOList.Count == plateKitchenObject.GetKitchenObjectSOList().Count)
             {
                 bool plateContentsMatchesRecipe = true;
                 foreach (KitchenObjectSO recipeKitchenObjectSO in waitingRecipeSO.kitchenObjectSOList)
                 {
-                    // Cycling through all ingredients in the recipe(·¹½ÃÇÇÀÇ ÀüÃ¼ Àç·á¸¦ ÇÏ³ª¾¿ ºñ±³)
+                    // Cycling through all ingredients in the recipe(ë ˆì‹œí”¼ì˜ ì „ì²´ ì¬ë£Œë¥¼ í•˜ë‚˜ì”© ë¹„êµ)
                     bool ingredientFound = false;
                     foreach (KitchenObjectSO plateKitchenObjectSO in plateKitchenObject.GetKitchenObjectSOList())
                     {
-                        // Cycling through all ingredients in the Plate(±×¸©¿¡ ´ã±ä Àç·á¸¦ ÇÏ³ª¾¿ ºñ±³)
+                        // Cycling through all ingredients in the Plate(ê·¸ë¦‡ì— ë‹´ê¸´ ì¬ë£Œë¥¼ í•˜ë‚˜ì”© ë¹„êµ)
                         if (plateKitchenObjectSO == recipeKitchenObjectSO)
                         {
                             // Ingredient matches!
@@ -80,6 +81,7 @@ public class DeliveryManager : MonoBehaviour
                 {
                     // Player delivered the correct recipe!
                     waitingRecipeSOList.RemoveAt(i);
+                    successfulRecipesAmount++;
 
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
@@ -96,5 +98,10 @@ public class DeliveryManager : MonoBehaviour
     public List<RecipeSO> GetWaitingRecipeSOList()
     {
         return waitingRecipeSOList;
+    }
+
+    public int GetSuccessfulRecipesAmount()
+    {
+        return successfulRecipesAmount;
     }
 }
