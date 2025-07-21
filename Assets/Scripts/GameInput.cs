@@ -15,7 +15,7 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnInteractAction; // 상호작용 이벤트 핸들러
     public event EventHandler OnInteractAlternateAction; // 슬라이스 상호작용 이벤트 핸들러
     public event EventHandler OnPuaseAction;
-
+    public event EventHandler OnBindingRebind;
     public enum Binding
     {
         Move_Up,
@@ -169,6 +169,8 @@ public class GameInput : MonoBehaviour
 
                 PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, playerInputActions.SaveBindingOverridesAsJson());
                 PlayerPrefs.Save();
+
+                OnBindingRebind?.Invoke(this, EventArgs.Empty);
             })
             .Start();
     }
