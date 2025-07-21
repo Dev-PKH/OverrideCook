@@ -18,7 +18,7 @@ MonoBehaviour:
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1753102369
+  checkedLastUpdateTimestamp: 1753106964
   lastQOTDResponse:
     questionId: 203
     questionText: 'What are the minimum requirements (array size) to draw a Mesh
@@ -37,7 +37,7 @@ MonoBehaviour:
     answerC: 6 vertices, 3 uvs, 4 triangles
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1753102369
+  lastQotdTimestamp: 1753106964
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/summer2025CodeMonkeyBundle.png
     topText: All my Courses (and Games) in one Bundle! DEEP DISCOUNT ONLY THIS SUMMER!
@@ -45,11 +45,11 @@ MonoBehaviour:
     bottomText: Get my Code Monkey Toolkit and make games BETTER and FASTER! 50%
       OFF right now!
     bottomLink: toolkit
-  lastDynamicHeaderTimestamp: 1753102369
+  lastDynamicHeaderTimestamp: 1753106964
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1753102369
+  websiteLatestMessageTimestamp: 1753106964
   websiteLatestVideos:
     videos:
     - youTubeId: TYgEWbK-mCc
@@ -60,4 +60,4 @@ MonoBehaviour:
       title: Get 98% OFF on the Unity Summer Sale! (Awesome TOOLS and Assets!)
     - youTubeId: 4kg2N-t2tWI
       title: How REAL Developers Build Complex Games!
-  websiteLatestVideosTimestamp: 1753102369
+  websiteLatestVideosTimestamp: 1753106964
