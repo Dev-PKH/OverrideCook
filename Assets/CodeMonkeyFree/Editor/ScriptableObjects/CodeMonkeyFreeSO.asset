@@ -14,28 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1753015747
+  lastShownTimestamp: 1753102369
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1753015747
+  checkedLastUpdateTimestamp: 1753102369
   lastQOTDResponse:
-    questionId: 202
-    questionText: 'What is the Color on the SpriteRenderer after running this code?
+    questionId: 203
+    questionText: 'What are the minimum requirements (array size) to draw a Mesh
+      Quad?
 
-      <p>Color
-      myColor = Color.red;</p>
+      <p>Mesh mesh = new Mesh();</p>
 
-      <p>spriteRenderer.color = myColor;</p>
+      <p>mesh.vertices = ???</p>
 
-      <p>myColor
-      = Color.blue;</p>'
-    answerA: Red
-    answerB: Blue
-    answerC: Don't Know
+      <p>mesh.uv
+      = ???</p>
+
+      <p>mesh.triangles = ???</p>'
+    answerA: 4 vertices, 4 uvs, 2 triangles
+    answerB: 4 vertices, 4 uvs, 6 triangles
+    answerC: 6 vertices, 3 uvs, 4 triangles
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1753015747
+  lastQotdTimestamp: 1753102369
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/summer2025CodeMonkeyBundle.png
     topText: All my Courses (and Games) in one Bundle! DEEP DISCOUNT ONLY THIS SUMMER!
@@ -43,19 +45,19 @@ MonoBehaviour:
     bottomText: Get my Code Monkey Toolkit and make games BETTER and FASTER! 50%
       OFF right now!
     bottomLink: toolkit
-  lastDynamicHeaderTimestamp: 1753015747
+  lastDynamicHeaderTimestamp: 1753102369
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1753015747
+  websiteLatestMessageTimestamp: 1753102369
   websiteLatestVideos:
     videos:
+    - youTubeId: TYgEWbK-mCc
+      title: Learn C# by DOING, Hangman Beginner Project (Overview + Walkthrough)
     - youTubeId: s9ORB4W5K2E
       title: How to make an AWESOME Fantasy RPG in 19 MINUTES!
     - youTubeId: PbFb7PFdT4A
       title: Get 98% OFF on the Unity Summer Sale! (Awesome TOOLS and Assets!)
     - youTubeId: 4kg2N-t2tWI
       title: How REAL Developers Build Complex Games!
-    - youTubeId: OOVrtfWLdvE
-      title: TOP 10 FREE NEW Assets JULY 2025!
-  websiteLatestVideosTimestamp: 1753015747
+  websiteLatestVideosTimestamp: 1753102369

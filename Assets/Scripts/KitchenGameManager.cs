@@ -19,9 +19,9 @@ public class KitchenGameManager : MonoBehaviour
     }
 
     private State state;
-    private float countdownToStartTimer = 3f;
+    private float countdownToStartTimer = 1f;
     private float gamePlayingTimer;
-    private float gamePlayingTimerMax = 30f;
+    private float gamePlayingTimerMax = 300f;
     private bool isGamePaused = false;
 
     private void Awake()
@@ -35,6 +35,10 @@ public class KitchenGameManager : MonoBehaviour
     {
         GameInput.Instance.OnPuaseAction += GameInput_OnPuaseAction;
         GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+
+        // DEBUG TRIGGER GAME START AUTOMATICALLY (네트워크 테스트를 위한 디버깅 코드)
+        state = State.CountdownToStart;
+        OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)

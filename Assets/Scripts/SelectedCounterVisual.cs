@@ -14,7 +14,7 @@ public class SelectedCounterVisual : MonoBehaviour
     private void Start()
     {
         // 이벤트 등록
-        Player.Instance.OnSelectedCounterChanged += Player_OnSelectedCounterChanged;
+        //Player.Instance.OnSelectedCounterChanged += Player_OnSelectedCounterChanged;
     }
 
     private void Player_OnSelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
