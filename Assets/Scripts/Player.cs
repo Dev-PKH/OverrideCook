@@ -6,7 +6,15 @@ using UnityEngine;
 
 public class Player : NetworkBehaviour, IKitchenObjectParent
 {
-    //public static Player Instance { get; private set; }
+    public static event EventHandler OnAnyPlayerSpawned;
+    public static event EventHandler OnAnyPickedSomething;
+
+    public static void ResetStaticData()
+    {
+        OnAnyPlayerSpawned = null;
+    }
+
+    public static Player LocalInstance { get; private set; }
 
 
     public event EventHandler OnPickedSomething;
@@ -26,16 +34,21 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
     private BaseCounter selectedCounter;
     private KitchenObject kitchenObject;
 
-    private void Awake()
-    {
-        //Instance = this;
-    }
-
     // Start is called before the first frame update
     private void Start()
     {
         GameInput.Instance.OnInteractAction += GameInput_OnInteractAction; // 이벤트 등록
         GameInput.Instance.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        if(IsOwner)
+        {
+            LocalInstance = this;
+        }
+
+        OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
     }
 
     private void GameInput_OnInteractAlternateAction(object sender, EventArgs e)
@@ -111,52 +124,6 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
         //Debug.Log(selectedCounter);
     }
 
-    /*
-    private void HandleMovementServerAuth()
-    {
-        Vector2 inputVector = GameInput.Instance.GetMovementVeectorNormalized();
-        HandleMovementServerRpc(inputVector);
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    private void HandleMovementServerRpc(Vector2 inputVector)
-    {
-        Vector3 moveDir = new Vector3(inputVector.x, 0, inputVector.y);
-
-        float moveDistance = moveSpeed * Time.deltaTime;
-        float playerRadius = .7f;
-        float playerHieght = 2f;
-        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHieght, playerRadius, moveDir, moveDistance);
-        // 시작점과 끝점(발밑과 높이)만큼의 캡슐이 지정된 방향으로 설정한 거리만큼 충돌 객체가 없는지를 판단
-
-        // 충돌객체가 존재할 경우
-        if (!canMove)
-        {
-            // 대각 움직임 조정
-            // x 방향 움직임은 가능한지 체크
-            Vector3 moveDirX = new Vector3(moveDir.x, 0, 0).normalized;
-            canMove = (moveDir.x < -.5f || moveDir.x > .5f) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHieght, playerRadius, moveDirX, moveDistance);
-
-            if (canMove) // x 방향으로만 개선
-            {
-                moveDir = moveDirX;
-            }
-            else // x 방향에도 충돌 객체가 있으므로 z방향을 확인
-            {
-                Vector3 moveDirZ = new Vector3(0, 0, moveDir.z).normalized;
-                canMove = (moveDir.z < -.5f || moveDir.z > .5f) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHieght, playerRadius, moveDirZ, moveDistance);
-                if (canMove) moveDir = moveDirZ; // z방향으로 개선
-            }
-        }
-
-        if (canMove) // 충돌이 없는 경우에만 해당 방향으로 이동
-            transform.position += moveDir * moveDistance;
-
-        isWalking = moveDir != Vector3.zero;
-        float rotataionSpeed = 10f;
-        transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotataionSpeed);
-    }*/
-
     private void HandleMovement()
     {
         Vector2 inputVector = GameInput.Instance.GetMovementVeectorNormalized();
@@ -220,6 +187,7 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
         if(kitchenObject != null)
         {
             OnPickedSomething?.Invoke(this, EventArgs.Empty);
+            OnAnyPickedSomething?.Invoke(this, EventArgs.Empty);
         }
     }
 
