@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 // 부엌 오브젝트 스크립트
-public class KitchenObject : MonoBehaviour
+public class KitchenObject : NetworkBehaviour
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
@@ -31,8 +32,8 @@ public class KitchenObject : MonoBehaviour
 
         kitchenObjectParent.SetKitchenObject(this); // 현재 계산대에 이 오브젝트를 추가
 
-        transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform(); // 부모 변경
-        transform.localPosition = Vector3.zero; // 위치 이동
+        //transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform(); // 부모 변경
+        //transform.localPosition = Vector3.zero; // 위치 이동
     }
 
     public IKitchenObjectParent GetKitchenObjectParent()
@@ -60,12 +61,8 @@ public class KitchenObject : MonoBehaviour
         }
     }
 
-    public static KitchenObject SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent)
+    public static void SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent)
     {
-        Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
-        KitchenObject kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
-        kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
-
-        return kitchenObject;
+        KitchenGameMultiplayer.Instance.SpawnKitchenObject(kitchenObjectSO, kitchenObjectParent);
     }
 }
