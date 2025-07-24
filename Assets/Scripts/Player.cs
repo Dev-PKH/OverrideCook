@@ -29,6 +29,7 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
     [SerializeField] private LayerMask countersLayerMask;
     [SerializeField] private LayerMask collisionsLayerMask;
     [SerializeField] private Transform kitchenObjectHoldPoint;
+    [SerializeField] private List<Vector3> spawnPositionList;
 
     private bool isWalking;
     private Vector3 lastInteractDir;
@@ -48,6 +49,8 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
         {
             LocalInstance = this;
         }
+
+        transform.position = spawnPositionList[(int)OwnerClientId];
 
         OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
     }
@@ -132,9 +135,8 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
         Vector3 moveDir = new Vector3(inputVector.x, 0, inputVector.y);
 
         float moveDistance = moveSpeed * Time.deltaTime;
-        float playerRadius = .7f;
-        float playerHieght = 2f;
-        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHieght, playerRadius, moveDir, moveDistance, collisionsLayerMask);
+        float playerRadius = .6f;
+        bool canMove = !Physics.BoxCast(transform.position, Vector3.one * playerRadius, moveDir, Quaternion.identity, moveDistance, collisionsLayerMask);
         // 시작점과 끝점(발밑과 높이)만큼의 캡슐이 지정된 방향으로 설정한 거리만큼 충돌 객체가 없는지를 판단
 
         // 충돌객체가 존재할 경우
@@ -143,16 +145,16 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
             // 대각 움직임 조정
             // x 방향 움직임은 가능한지 체크
             Vector3 moveDirX = new Vector3(moveDir.x, 0, 0).normalized;
-            canMove = (moveDir.x < -.5f || moveDir.x > .5f) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHieght, playerRadius, moveDirX, moveDistance, collisionsLayerMask);
+            canMove = (moveDir.x < -.5f || moveDir.x > .5f) && !Physics.BoxCast(transform.position, Vector3.one * playerRadius, moveDirX, Quaternion.identity, moveDistance, collisionsLayerMask);
 
             if (canMove) // x 방향으로만 개선
             {
                 moveDir = moveDirX;
-            }
+            }  
             else // x 방향에도 충돌 객체가 있으므로 z방향을 확인
             {
                 Vector3 moveDirZ = new Vector3(0, 0, moveDir.z).normalized;
-                canMove = (moveDir.z < -.5f || moveDir.z > .5f) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHieght, playerRadius, moveDirZ, moveDistance, collisionsLayerMask);
+                canMove = (moveDir.z < -.5f || moveDir.z > .5f) && !Physics.BoxCast(transform.position, Vector3.one * playerRadius, moveDirZ, Quaternion.identity, moveDistance, collisionsLayerMask);
                 if (canMove) moveDir = moveDirZ; // z방향으로 개선
             }
         }

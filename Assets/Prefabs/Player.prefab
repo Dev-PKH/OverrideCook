@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2889414456
+  GlobalObjectIdHash: 1709558057
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -108,8 +108,13 @@ MonoBehaviour:
     m_Bits: 64
   collisionsLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
   kitchenObjectHoldPoint: {fileID: 5780810737050068940}
+  spawnPositionList:
+  - {x: -2, y: 0, z: 0}
+  - {x: 2, y: 0, z: 0}
+  - {x: -2, y: 0, z: -2}
+  - {x: 2, y: 0, z: -2}
 --- !u!114 &8322116746878663752
 MonoBehaviour:
   m_ObjectHideFlags: 0
