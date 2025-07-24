@@ -70,6 +70,8 @@ public class StoveCounter : BaseCounter, IHasProgress
             {
                 progressNormalized = 0f
             });
+
+            ClearTimerServerRpc();
         }
     }
 
@@ -111,7 +113,7 @@ public class StoveCounter : BaseCounter, IHasProgress
 
                         KitchenObject.SpawnKitchenObject(burningRecipeSO.output, this); // 구워진 재료 생성
 
-                        burningTimer.Value = 0f; // 강제로 추가한 로직, 버전 차이때문인지 이게 없으면 밑에 state가 실행되도 클라이언트에 UI가 그대로 남아있음
+                        //burningTimer.Value = 0f; // 강제로 추가한 로직, 버전 차이때문인지 이게 없으면 밑에 state가 실행되도 클라이언트에 UI가 그대로 남아있음
                         state.Value = State.Burned;
                     }
                     break;
@@ -150,9 +152,9 @@ public class StoveCounter : BaseCounter, IHasProgress
                 {
                     if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())) // 플레이팅 재료라면 삭제
                     {
-                        GetKitchenObject().DestroySelf();
+                        KitchenObject.DestroyKitchenObject(GetKitchenObject());
 
-                        state.Value = State.Idle;
+                        SetStateIdleServerRpc();
                     }
                 }
             }
@@ -163,6 +165,13 @@ public class StoveCounter : BaseCounter, IHasProgress
                 SetStateIdleServerRpc();
             }
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void ClearTimerServerRpc() // 이 함수가 없다면, state가 바뀌더라도 timer 값이 여전히 유지되어 client에는 ProgressBarUI가 남아있게됨
+    { // 참고로 NetworkVariable의 값은 서버에서만 수정이 가능하고, 값이 변경되면 알아서 클라이언트에게 전달하는 ClientRpc 방식임
+        fryingTimer.Value = 0;
+        burningTimer.Value = 0;
     }
 
     [ServerRpc(RequireOwnership = false)]

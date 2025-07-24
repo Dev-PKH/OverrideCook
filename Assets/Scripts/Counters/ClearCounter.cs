@@ -29,7 +29,7 @@ public class ClearCounter : BaseCounter
                 {
                     if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())) // 플레이팅 재료라면 삭제
                     {
-                        GetKitchenObject().DestroySelf();
+                        KitchenObject.DestroyKitchenObject(GetKitchenObject());
                     }
                 }
                 else // 플레이어가 그릇이 아닌 다른걸 들고 있다면
@@ -38,7 +38,7 @@ public class ClearCounter : BaseCounter
                     {
                         if(plateKitchenObject.TryAddIngredient(player.GetKitchenObject().GetKitchenObjectSO())) // 플레이어가 플레이팅 재료를 들고 있다면
                         {
-                            player.GetKitchenObject().DestroySelf(); // 플레이어 재료 삭제
+                            KitchenObject.DestroyKitchenObject(player.GetKitchenObject()); // 플레이어 재료 삭제
                         }
                     }
                 }
