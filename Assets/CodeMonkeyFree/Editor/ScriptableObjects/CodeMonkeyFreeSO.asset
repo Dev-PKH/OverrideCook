@@ -14,30 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1753275638
+  lastShownTimestamp: 1753362109
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1753284520
+  checkedLastUpdateTimestamp: 1753362109
   lastQOTDResponse:
-    questionId: 203
-    questionText: 'What are the minimum requirements (array size) to draw a Mesh
-      Quad?
+    questionId: 204
+    questionText: 'What will be the value of isOne?
 
-      <p>Mesh mesh = new Mesh();</p>
+      <p>float oneThird = 1f
+      / 3f;</p>
 
-      <p>mesh.vertices = ???</p>
-
-      <p>mesh.uv
-      = ???</p>
-
-      <p>mesh.triangles = ???</p>'
-    answerA: 4 vertices, 4 uvs, 2 triangles
-    answerB: 4 vertices, 4 uvs, 6 triangles
-    answerC: 6 vertices, 3 uvs, 4 triangles
+      <p>bool isOne = (oneThird * 3f) == 1f;</p>'
+    answerA: true
+    answerB: false
+    answerC: 
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1753284520
+  lastQotdTimestamp: 1753362109
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/summer2025CodeMonkeyBundle.png
     topText: All my Courses (and Games) in one Bundle! DEEP DISCOUNT ONLY THIS SUMMER!
@@ -45,11 +40,11 @@ MonoBehaviour:
     bottomText: Get my Code Monkey Toolkit and make games BETTER and FASTER! 50%
       OFF right now!
     bottomLink: toolkit
-  lastDynamicHeaderTimestamp: 1753284520
+  lastDynamicHeaderTimestamp: 1753362109
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1753284520
+  websiteLatestMessageTimestamp: 1753362109
   websiteLatestVideos:
     videos:
     - youTubeId: oBCXk_6Fft0
@@ -60,4 +55,4 @@ MonoBehaviour:
       title: How to make an AWESOME Fantasy RPG in 19 MINUTES!
     - youTubeId: PbFb7PFdT4A
       title: Get 98% OFF on the Unity Summer Sale! (Awesome TOOLS and Assets!)
-  websiteLatestVideosTimestamp: 1753284520
+  websiteLatestVideosTimestamp: 1753362109
