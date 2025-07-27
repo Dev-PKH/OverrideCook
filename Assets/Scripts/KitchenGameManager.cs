@@ -23,6 +23,8 @@ public class KitchenGameManager : NetworkBehaviour
         GameOver
     }
 
+    [SerializeField] private Transform playerPrefab;
+
     private NetworkVariable<State> state = new NetworkVariable<State>(State.WaitingToStart);
     private bool isLocalPlayerReady;
     private NetworkVariable<float> countdownToStartTimer = new NetworkVariable<float>(3f);
@@ -56,6 +58,16 @@ public class KitchenGameManager : NetworkBehaviour
         if(IsServer)
         {
             NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;
+        }
+    }
+
+    private void SceneManager_OnLoadEventCompleted(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    {
+        foreach(ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            Transform playerTransform = Instantiate(playerPrefab); // 프리펩 생성
+            playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true); // PlayerObject로 등록하여 각 클라이언트에 플레이어 등록
         }
     }
 
@@ -117,8 +129,6 @@ public class KitchenGameManager : NetworkBehaviour
         {
             state.Value = State.CountdownToStart;
         }
-
-        Debug.Log("allClientsReady: " + allClientsReady);
     }
 
     private void GameInput_OnPuaseAction(object sender, EventArgs e)
