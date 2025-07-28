@@ -49,7 +49,7 @@ public class KitchenGameLobby : MonoBehaviour
         if (UnityServices.State != ServicesInitializationState.Initialized) // 초기화가 진행되지 않았을 경우에만
         {
             InitializationOptions initializationOptions = new InitializationOptions();
-            initializationOptions.SetProfile(UnityEngine.Random.Range(0, 10000).ToString()); // 같은 PC에서 다중 클라이언트 테스트를 하기 위해
+            //initializationOptions.SetProfile(UnityEngine.Random.Range(0, 10000).ToString()); // 같은 PC에서 다중 클라이언트 테스트를 하기 위해
 
             await UnityServices.InitializeAsync(initializationOptions); // UGS 초기화
 
