@@ -104,8 +104,8 @@ public class KitchenGameManager : NetworkBehaviour
         {
             isLocalPlayerReady = true;
 
-            SetPlayerReadyServerRpc();
             OnLocalPlayerReadyChanged?.Invoke(this, EventArgs.Empty);
+            SetPlayerReadyServerRpc();
         }
     }
 
