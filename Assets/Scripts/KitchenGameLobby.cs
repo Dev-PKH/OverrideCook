@@ -49,7 +49,8 @@ public class KitchenGameLobby : MonoBehaviour
         if (UnityServices.State != ServicesInitializationState.Initialized) // 초기화가 진행되지 않았을 경우에만
         {
             InitializationOptions initializationOptions = new InitializationOptions();
-            //initializationOptions.SetProfile(UnityEngine.Random.Range(0, 10000).ToString()); // 같은 PC에서 다중 클라이언트 테스트를 하기 위해
+            initializationOptions.SetProfile(UnityEngine.Random.Range(0, 10000).ToString()); // 같은 PC에서 다중 클라이언트 테스트를 하기 위해
+            // 개인 로컬 pc가 아닌 배포용으로 작업할 땐 이걸 주석처리하면 됨(궂이 배포에서도 랜덤을 돌릴 이유가 없음. 그러나 1개의 pc에서는 이게 있어야만 멀티 테스트 가능)
 
             await UnityServices.InitializeAsync(initializationOptions); // UGS 초기화
 
@@ -65,7 +66,8 @@ public class KitchenGameLobby : MonoBehaviour
     
     private void HandlePeriodicListLobbies()
     {
-        if (joinedLobby == null && AuthenticationService.Instance.IsSignedIn 
+        if (joinedLobby == null && AuthenticationService.Instance.IsSignedIn &&
+            UnityServices.State == ServicesInitializationState.Initialized 
             && SceneManager.GetActiveScene().name == Loader.Scene.LobbyScene.ToString()) // 로비이고 && 로그인 완료 여부 && 로비일때만
         {
             listLobbiesTimer -= Time.deltaTime;
