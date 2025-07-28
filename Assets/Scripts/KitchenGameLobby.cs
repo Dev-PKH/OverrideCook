@@ -181,7 +181,7 @@ public class KitchenGameLobby : MonoBehaviour
         }
     }
 
-    public async void DeleteLobby()
+    public async void DeleteLobby() // 로비를 삭제할 때 정보 갱신 (게임이 시작될 떄)
     {
         if (joinedLobby != null) {
             try
@@ -196,7 +196,7 @@ public class KitchenGameLobby : MonoBehaviour
         }
     }
 
-    public async void LeaveLobby()
+    public async void LeaveLobby() // 플레이어가 직접 이탈할 때 로비 정보 갱신
     {
         if (joinedLobby != null)
         {
@@ -213,7 +213,7 @@ public class KitchenGameLobby : MonoBehaviour
         }
     }
 
-    public async void KickPlayer(string playerId)
+    public async void KickPlayer(string playerId) // 플레이어가 강퇴될 때 로비 정보 갱신
     {
         if (IsLobbyHost())
         {
